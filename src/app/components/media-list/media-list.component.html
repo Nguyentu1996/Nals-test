@@ -1,0 +1,17 @@
+<ul>
+  <div class="d-flex flex-wrap px-0">
+    <ng-container *ngFor="let item of articles$ | async">
+      <li class="media col-md-6 col-lg-4" >
+        <div class="post-area">
+          <a [routerLink]="['/details', item.id,]">
+            <img [src]="item.image" [alt]="item.title" (error)="errorHandler($event)">
+          </a>
+          <div class="media-body">
+            <a class="title mt-0 mb-1">{{item.title}}</a>
+          </div>
+          <span class="create-date">{{item.createdAt | date: 'MMM d, y, h:mm:ss a'}}</span>
+        </div>
+      </li>
+    </ng-container>
+  </div>
+</ul>

@@ -1,0 +1,23 @@
+.main-container {
+    min-height: 100vh;
+}
+.global-header {
+    background-image: url(../../../assets/slider.jpg) ;
+    /* background-image: linear-gradient(rgb(160, 122, 122), rgb(92, 92, 50));   */
+    padding-top: 170px;
+    padding-bottom: 100px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.fs-32 {
+    font-size: 32px;
+}
+/* Medium devices (landscape tablets, 768px) */
+@media only screen and (max-width: 768px) {
+    .global-header {
+        padding-top: 80px;
+        padding-bottom: 60px;
+    }
+}

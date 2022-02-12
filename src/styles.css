@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+    font-size: 14px;
+}
+body {
+    color: #151935;
+  }
+a, a:hover, a:focus, a:active{
+  color: inherit; /* colors for links too */
+  text-decoration: inherit; /* no underline */
+}
+p {
+  margin: 0;
+}
+ /* spinner-overlay */
+.spinerBackdropClass {
+  position: absolute;
+  top: calc(50% - 25px) !important;
+  left: calc(50% - 25px) !important
+}
+ul {
+  padding: 0;
+}
