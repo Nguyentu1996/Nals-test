@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { HomeService } from './home.service';
+import { Observable } from 'rxjs';
+import { Article } from 'src/app/interface/article';
+import { BlogService } from '../../services/blog.service';
 
 @Component({
   selector: 'app-home',
@@ -8,23 +10,31 @@ import { HomeService } from './home.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent implements OnInit {
-  public articles$ = this.homeService.articles$;
-  collectionSize$ = this.homeService.collectionSize$;
+  articles$!: Observable<Article[]>;
+  collectionSize$!: Observable<number>;
   pageNum = 1;
 
-  constructor(public homeService: HomeService) { }
+
+  constructor(public blogService: BlogService) { }
 
   ngOnInit(): void {
     this.getArticles();
+    this.articles$ = this.blogService.articles$;
+    this.collectionSize$ = this.blogService.collectionSize$;
   }
 
   getArticles(){
-    this.homeService.getArticles(this.pageNum);
+    this.blogService.getArticles(this.pageNum);
   }
 
   onPageChange(currentPage: number){
     this.pageNum = currentPage;
-
     this.getArticles();
+  }
+  onSearch(keyword: string) {
+    this.blogService.searchArticles(keyword, this.pageNum);
+  }
+  onSort(sortType: string) {
+    this.blogService.sortArticles(sortType);
   }
 }

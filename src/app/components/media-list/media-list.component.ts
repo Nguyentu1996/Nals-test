@@ -13,7 +13,7 @@ export class MediaListComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
   }
   errorHandler(event: any) {
     event.target.src = "../../../assets/lady.jpg";

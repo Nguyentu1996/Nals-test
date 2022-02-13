@@ -5,15 +5,31 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const routes: Routes = [
   {
-    path: '', component: MainComponent,
+    path: '',
+    redirectTo: 'article',
+    pathMatch: 'full'
+  },
+  {
+    path: 'article', component: MainComponent,
     children: [
-      { path:'', loadChildren:() => import('./pages/home/home.module').then(m => m.HomeModule) }
+      {
+        path: '', loadChildren: () =>
+          import('./pages/home/home.module').then(
+            m => m.HomeModule
+          )
+      },
+      {
+        path: ':id', loadChildren: () =>
+          import('./pages/details/details.module').then(
+            m => m.DetailsModule
+          )
+      },
     ]
   },
   {
     path: '', component: MainComponent,
     children: [
-      { path:'**', component: NotFoundComponent }
+      { path: '**', component: NotFoundComponent }
     ]
   }
 ];

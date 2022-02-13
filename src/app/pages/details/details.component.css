@@ -1,0 +1,14 @@
+#article {
+    margin-top: 10px;
+}
+.create-date {
+    float: right;
+    font-size: 11px;
+    margin-top: 5px;
+    margin-right: 5px;
+    color: #999999;
+    letter-spacing: 0.05em;
+}
+.title {
+    text-transform: capitalize;
+}

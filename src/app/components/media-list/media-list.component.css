@@ -26,6 +26,12 @@ img {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+.no-result {
+    margin-top: 20px;
+    align-items: center;
+
+}
+
 
 @media only screen and (max-width: 768px) {
     .post-area {

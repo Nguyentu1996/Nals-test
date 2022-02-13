@@ -1,29 +1,25 @@
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpEvent, HttpHandler, HttpRequest, HttpResponse, HttpErrorResponse } from '@angular/common/http';
-import { catchError, finalize, map, Observable, throwError } from 'rxjs';
+import { catchError, finalize, Observable, throwError } from 'rxjs';
 import { SpinnerOverlayService } from '../components/spinner/spinner-overlay-sevice';
+import { ModalService } from '../services/model.service';
 
 @Injectable()
 export class ApiInterceptor implements HttpInterceptor {
-  constructor(private spinnerOverlayService: SpinnerOverlayService) {
+  constructor(
+    private spinnerOverlayService: SpinnerOverlayService,
+    private modalService: ModalService
+    ) {
 
   }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    let request = req.clone({
+      headers: req.headers.set('Content-Type', 'application/json '),
+  });
     this.spinnerOverlayService.show();
-
-    return next.handle(req).pipe(
-      map((resp: HttpEvent<any>) => {
-        // this.isShow = false;
-        if (resp instanceof HttpResponse) {
-          if (resp.status === 404 || resp.status === 500) {
-            // this.showPopup('Errors', 'Please contact admin', 'normal');
-            return resp;
-          }
-        }
-        return resp;
-      }),
+    return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
-        // this.showPopup('Errors', 'Please contact admin', 'normal');
+        this.modalService.openErrorModal();
         return throwError(() => new Error('Something bad happened; please try again later.'));
       }),
       finalize(() => {
@@ -33,3 +29,4 @@ export class ApiInterceptor implements HttpInterceptor {
     );
   }
 }
+
