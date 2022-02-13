@@ -6,19 +6,11 @@ import { ModalService } from 'src/app/services/model.service';
   templateUrl: './tags.component.html',
   styleUrls: ['./tags.component.css']
 })
-export class TagsComponent implements OnInit {
-  @Output() onSort = new EventEmitter<string>();
-
+export class TagsComponent {
   constructor(
     private modalService: ModalService
   ) { }
 
-  ngOnInit(): void {
-  }
-
-  sort(){
-    this.onSort.emit()
-  }
   addArticle() {
     this.modalService.openAddOrUpdateArticleModal('add');
   }

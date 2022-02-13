@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -6,8 +6,8 @@ import { FormControl, FormGroup } from '@angular/forms';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit {
-  @Output() onSearch = new EventEmitter<string>();
+export class SearchComponent {
+  @Output() search = new EventEmitter<string>();
 
   searchForm = new FormGroup({
     searchValue: new FormControl(''),
@@ -15,10 +15,8 @@ export class SearchComponent implements OnInit {
   });
   constructor() { }
 
-  ngOnInit(): void {
-  }
   onSubmit() {
-    this.onSearch.emit(this.searchForm.controls['searchValue'].value)
+    this.search.emit(this.searchForm.controls['searchValue'].value)
   }
 
 }

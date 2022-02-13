@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Article } from 'src/app/interface/article';
 
@@ -7,14 +7,12 @@ import { Article } from 'src/app/interface/article';
   templateUrl: './media-list.component.html',
   styleUrls: ['./media-list.component.css']
 })
-export class MediaListComponent implements OnInit {
+export class MediaListComponent {
   @Input()
   articles$!: Observable<Article[]>;
 
   constructor() { }
 
-  ngOnInit(): void {    
-  }
   errorHandler(event: any) {
     event.target.src = "../../../assets/lady.jpg";
   }

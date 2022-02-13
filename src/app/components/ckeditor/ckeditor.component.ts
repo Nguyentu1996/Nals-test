@@ -1,6 +1,5 @@
-import { Component, forwardRef, Input, OnInit } from '@angular/core';
+import { Component, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { ChangeEvent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
 import * as customBuild from '../../custom-build-ckeditor/build/ckeditor';
 
 @Component({
@@ -15,7 +14,7 @@ import * as customBuild from '../../custom-build-ckeditor/build/ckeditor';
     }
   ]
 })
-export class CkeditorComponent implements OnInit, ControlValueAccessor {
+export class CkeditorComponent implements ControlValueAccessor {
   public editor = customBuild;
 
   private _value: string = '';
@@ -45,17 +44,6 @@ export class CkeditorComponent implements OnInit, ControlValueAccessor {
   registerOnTouched(fn: any): void {
     this.onTouch = fn; 
   }
-
-  ngOnInit(): void {
-  }
-
-  // onReady(editor: any) {
-  //   if (editor.model.schema.isRegistered('image')) {
-  //     editor.model.schema.extend('image', { allowAttributes: 'blockIndent' });
-  //   }
-  // }
-
- 
 }
 
 
