@@ -10,7 +10,7 @@ import { TagsComponent } from 'src/app/components/tags/tags.component';
 import { HomeComponent } from './home.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { CkeditorComponent } from 'src/app/components/ckeditor/ckeditor.component';
-import { ImagePipe } from 'src/app/components/pipes/image-pipe';
+import { ImagePipe } from 'src/app/pipes/image-pipe';
 
 
 const router = [
