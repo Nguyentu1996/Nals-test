@@ -9,13 +9,7 @@
     margin-top: 3px ;
     /* height: 2px; */
 }
-.toggle-collapse {
-    border: 0;
-    background-color: #fff;
-    border-radius: 4px;
-    line-height: 0.8;
-    margin-top: 1px;
-}
+
 
 .form-select {
     font-size: 13px;
