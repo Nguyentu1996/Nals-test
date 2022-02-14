@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Article } from 'src/app/interface/article';
 
@@ -10,11 +10,10 @@ import { Article } from 'src/app/interface/article';
 export class MediaListComponent {
   @Input()
   articles$!: Observable<Article[]>;
-
+  @Output() openArticleModal = new EventEmitter();
   constructor() { }
-
-  errorHandler(event: any) {
-    event.target.src = "../../../assets/lady.jpg";
+  onEdit(id: string){
+    this.openArticleModal.emit(id);
   }
 
 }

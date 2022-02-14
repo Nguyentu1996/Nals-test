@@ -1,22 +1,38 @@
 <div class="container">
   <div class="row pt-md-3 content-area">
     <div class="col-lg-9 col-md-8 px-0">
-      <app-media-list [articles$]="articles$"></app-media-list>
+      <app-media-list 
+        [articles$]="articles$"
+        (openArticleModal)="openArticleModal($event)"
+      >
+      </app-media-list>
     </div>
     <div id="content-sidebar" class="col-lg-3 col-md-4">
       <div class="d-block">
-        <app-search (search)="onSearch($event)"></app-search>
-        <app-tags></app-tags>
+        <app-search 
+          (search)="onSearch($event)">
+        </app-search>
+        <app-tags 
+            (openArticleModal)="openArticleModal($event)">
+        </app-tags>
       </div>
     </div>
   </div>
   <ng-container *ngIf="collectionSize$ | async as size">
     <ng-container *ngIf="size">
       <div class="row pt-lg-5 pt-md-3 justify-content-center">
-        <ngb-pagination [collectionSize]="size" (pageChange)="onPageChange($event)"
-          [maxSize]="7" [(page)]="pageNum" aria-label="Default pagination">
+        <ngb-pagination 
+          [collectionSize]="size"
+          (pageChange)="onPageChange($event)"
+          [maxSize]="7"
+          [(page)]="pageNum"
+          aria-label="Default pagination">
         </ngb-pagination>
       </div>
     </ng-container>
   </ng-container>
 </div>
+<app-add-update-article-modal 
+        (addArticle)="addArticle($event)"
+        (updateArticle)="updateArticle($event)">
+</app-add-update-article-modal>

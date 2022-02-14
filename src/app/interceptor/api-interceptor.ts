@@ -2,13 +2,14 @@ import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest
 import { Injectable } from '@angular/core';
 import { catchError, finalize, Observable, throwError } from 'rxjs';
 import { SpinnerOverlayService } from '../components/spinner/spinner-overlay-sevice';
+import { ToastService } from '../components/toast/toast.service';
 import { ModalService } from '../services/model.service';
 
 @Injectable()
 export class ApiInterceptor implements HttpInterceptor {
   constructor(
     private spinnerOverlayService: SpinnerOverlayService,
-    private modalService: ModalService
+    private modalService: ModalService,
     ) {
 
   }

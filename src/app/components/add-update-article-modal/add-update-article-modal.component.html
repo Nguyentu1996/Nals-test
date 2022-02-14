@@ -9,16 +9,41 @@
     <form [formGroup]="formGroup">
       <div class="mb-3 row">
         <div class="col-12">
-          <label>Title</label>
+          <label for="title">Title</label>
           <input type="text" class="form-control" formControlName="title" id="title">
+          <div class="text-danger" *ngIf="title?.invalid && (title?.dirty || title?.touched)">
+            <div *ngIf="title?.errors?.['required']">
+              Title is required
+            </div>
+            <div *ngIf="title?.errors?.['minlength']">
+              Title must be at least 4 characters long
+            </div>
+            <div *ngIf="title?.errors?.['maxlength']">
+              Title cannot exceed 10 characters
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <label for="image">Image</label>
+          <input type="text" class="form-control" formControlName="image" id="image">
+          <div class="text-danger" *ngIf="image?.invalid && (image?.dirty || image?.touched)">
+            <div *ngIf="image?.errors?.['imageNotExist']">
+              Image doesn't exist
+            </div>
+          </div>
         </div>
       </div>
       <label>Content</label>
-      <app-ckeditor formControlName="content" ></app-ckeditor>
+      <app-ckeditor formControlName="content"></app-ckeditor>
+      <div class="text-danger" *ngIf="content?.invalid && (content?.dirty || content?.touched)">
+        <div class="text-danger" *ngIf="content?.errors?.['required']">
+          Title is required
+        </div>
+      </div>
     </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-default" [disabled]="formGroup.invalid" (click)="modal.close('Save click')">{{btnTitle}}</button>
-    <button type="button" class="btn btn-default" (click)="modal.dismiss('Cross click')">Close</button>
+    <button type="button" class="btn btn-success" [disabled]="formGroup.invalid" (click)="modal.close('Save click')">{{btnTitle}}</button>
+    <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Cross click')">Close</button>
   </div>
 </ng-template>

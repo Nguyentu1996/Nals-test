@@ -1,5 +1,4 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ModalService } from 'src/app/services/model.service';
 
 @Component({
   selector: 'app-tags',
@@ -7,11 +6,11 @@ import { ModalService } from 'src/app/services/model.service';
   styleUrls: ['./tags.component.css']
 })
 export class TagsComponent {
+  @Output() openArticleModal = new EventEmitter();
   constructor(
-    private modalService: ModalService
   ) { }
 
   addArticle() {
-    this.modalService.openAddOrUpdateArticleModal('add');
+    this.openArticleModal.emit();
   }
 }

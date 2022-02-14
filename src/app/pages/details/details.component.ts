@@ -18,11 +18,10 @@ export class DetailsComponent implements OnInit {
 
   ngOnInit(): void {
     let id = this.route.snapshot.paramMap.get('id');
-    let idWrap = new Number(id);
-    debugger
-    if(idWrap.valueOf()){
-      this.article$ = this.blogService.getArticleById(idWrap.valueOf());
+    if(id) {
+      this.article$ = this.blogService.getArticleById(id);
     }
+    
   }
 
 }

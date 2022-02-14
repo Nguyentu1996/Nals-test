@@ -7,7 +7,7 @@
 }
 img {
     width: 100%;
-    height: 220px;
+    height: 180px;
     object-fit: cover;
 }
 .create-date {
@@ -31,11 +31,19 @@ img {
     align-items: center;
 
 }
+#edit-tag {
+    color: #0969da;
+    cursor: pointer;
+}
 
 
 @media only screen and (max-width: 768px) {
     .post-area {
-        margin: 20px 0;
-         
+        margin: 20px 0;  
+    }
+    img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
     }
 }

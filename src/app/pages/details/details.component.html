@@ -1,7 +1,7 @@
 <ng-container *ngIf="article$ | async as article">
   <ng-container *ngIf="article.id; else noResult">
     <div class="container">
-      <div id="article" class="row">
+      <div id="article" class="row d-block">
         <h1 id="title">{{article.title}}</h1>
         <span class="create-date">{{article.createdAt | date: 'MMM d, y, h:mm:ss a'}}</span>
         <div [innerHTML]="article.content"></div>

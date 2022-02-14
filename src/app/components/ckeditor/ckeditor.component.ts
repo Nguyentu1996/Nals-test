@@ -1,5 +1,5 @@
 import { Component, forwardRef } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
 import * as customBuild from '../../custom-build-ckeditor/build/ckeditor';
 
 @Component({
@@ -11,11 +11,17 @@ import * as customBuild from '../../custom-build-ckeditor/build/ckeditor';
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => CkeditorComponent),
       multi: true
+    },
+    {
+      provide: NG_VALIDATORS,
+      multi: true,
+      useExisting: forwardRef(() => CkeditorComponent)
     }
   ]
 })
-export class CkeditorComponent implements ControlValueAccessor {
+export class CkeditorComponent implements ControlValueAccessor, Validator  {
   public editor = customBuild;
+
 
   private _value: string = '';
 
@@ -31,9 +37,16 @@ export class CkeditorComponent implements ControlValueAccessor {
   }
   constructor() { }
 
+  validate(control: AbstractControl): ValidationErrors | null {
+    if (control.value?.length > 0) {
+      return null;
+    }
+    return {required: true};
+  }
+
   onChange(value: any) {}
 
-  onTouch() { }
+  onTouched () { }
 
   writeValue(obj: any): void {
     this._value = obj;
@@ -41,10 +54,10 @@ export class CkeditorComponent implements ControlValueAccessor {
   registerOnChange(fn: any): void {
     this.onChange = fn;
   }
+
   registerOnTouched(fn: any): void {
-    this.onTouch = fn; 
+    this.onTouched  = fn; 
   }
+
 }
-
-
-  
+ 

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, forkJoin, Observable, of, switchMap } from 'rxjs';
+import { BehaviorSubject, forkJoin, map, Observable, of } from 'rxjs';
 import { Article } from 'src/app/interface/article';
 import { environment } from 'src/environments/environment';
 
@@ -16,6 +16,7 @@ export class BlogService {
   public articles$: Observable<Article[]> = this._articles$.asObservable();
 
   constructor(private http: HttpClient) { }
+  
   getArticles(page: number) {
     forkJoin([this.getArticlesSize(), this.getArticlesByPage(page)],
     (collection, articles) => {  
@@ -31,7 +32,6 @@ export class BlogService {
         }
       }
     )
-    
   }
 
   searchArticles(keyword: string, pageNum: number){
@@ -52,10 +52,13 @@ export class BlogService {
         }
     });
   }
-  getArticleById(id: number) {
+  getArticleById(id: string) {
     return this.http.get<Article>(environment.apiUrl + `blogs/${id}`)
   }
   addArticle(article: Article) {
+    return this.http.post<Article>(environment.apiUrl + 'blogs', article)
+  }
+  updateArticle(article: Article) {
     return this.http.post<Article>(environment.apiUrl + 'blogs', article)
   }
 
@@ -65,5 +68,14 @@ export class BlogService {
 
   private getArticlesSize() {
     return this.http.get<Article[]>(environment.apiUrl + 'blogs?sortBy=createdAt&order=asc')
+  }
+  validateImage(url: string): Observable<boolean> {
+  
+    let isValid = this.http.get(url).pipe(map(value => {
+      if(value) {
+        debugger
+      }
+    }))
+    return of(false);
   }
 }
