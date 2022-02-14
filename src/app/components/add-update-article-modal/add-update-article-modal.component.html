@@ -37,7 +37,7 @@
       <app-ckeditor formControlName="content"></app-ckeditor>
       <div class="text-danger" *ngIf="content?.invalid && (content?.dirty || content?.touched)">
         <div class="text-danger" *ngIf="content?.errors?.['required']">
-          Title is required
+          Content is required
         </div>
       </div>
     </form>
