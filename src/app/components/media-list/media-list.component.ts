@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Article } from 'src/app/interface/article';
+import { Article, ArticleResponse } from 'src/app/interface/article';
 
 @Component({
   selector: 'app-media-list',
@@ -9,11 +9,10 @@ import { Article } from 'src/app/interface/article';
 })
 export class MediaListComponent {
   @Input()
-  articles$!: Observable<Article[]>;
+  articles$!: Observable<ArticleResponse>;
   @Output() openArticleModal = new EventEmitter();
-  constructor() { }
-  onEdit(id: string){
+  constructor() {}
+  onEdit(id: number) {
     this.openArticleModal.emit(id);
   }
-
 }
