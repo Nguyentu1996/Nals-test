@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { switchMap, take } from 'rxjs';
 import { AddUpdateArticleModalComponent } from 'src/app/components/add-update-article-modal/add-update-article-modal.component';
@@ -6,7 +6,6 @@ import { ToastService } from 'src/app/components/toast/toast.service';
 import { Article, ArticleResponse } from 'src/app/interface/article';
 import { AddArticleReq } from 'src/app/request/add-article';
 import { UpdateArticleReq } from 'src/app/request/update-article';
-import { ModalService } from 'src/app/services/model.service';
 import { BlogService } from '../../services/blog.service';
 
 @Component({
@@ -69,9 +68,12 @@ export class HomeComponent implements OnInit {
           modalRef.componentInstance.article = response;
           modalRef.componentInstance.lbTitle = 'Update Artitle';
           modalRef.componentInstance.btnTitle = 'Update';
-          modalRef.result.then((res: UpdateArticleReq) => {
-            this.updateArticle(res);
-          });
+          modalRef.result.then(
+            (res) => {
+              this.updateArticle(res);
+            },
+            (reason) => {}
+          );
         });
     } else {
       const article: Article = {
@@ -84,9 +86,12 @@ export class HomeComponent implements OnInit {
       };
       const modalRef = this.ngbModal.open(AddUpdateArticleModalComponent);
       modalRef.componentInstance.article = article;
-      modalRef.result.then((res: AddArticleReq) => {
-        this.addArticle(res);
-      });
+      modalRef.result.then(
+        (res: AddArticleReq) => {
+          this.addArticle(res);
+        },
+        (reason) => {}
+      );
     }
   }
 

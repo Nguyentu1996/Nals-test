@@ -1,37 +1,43 @@
 /* You can add global styles to this file, and also import other style files */
 * {
-    font-size: 14px;
+  font-size: 14px;
 }
 body {
-    color: #151935;
+  color: #151935;
 }
-a, a:hover, a:focus, a:active{
+a,
+a:hover,
+a:focus,
+a:active {
   color: inherit; /* colors for links too */
   text-decoration: inherit; /* no underline */
 }
 p {
   margin: 0;
 }
- /* spinner-overlay */
+/* spinner-overlay */
 .spinerBackdropClass {
   position: absolute;
   top: calc(50% - 25px) !important;
-  left: calc(50% - 25px) !important
+  left: calc(50% - 25px) !important;
 }
 ul {
   padding: 0;
 }
-textarea:focus, 
-textarea.form-control:focus, 
-input.form-control:focus, 
-input[type=text]:focus, 
-input[type=password]:focus, 
-input[type=email]:focus, 
-input[type=number]:focus, 
-[type=text].form-control:focus, 
-[type=password].form-control:focus, 
-[type=email].form-control:focus, 
-[type=tel].form-control:focus, 
+textarea:focus,
+textarea.form-control:focus,
+input.form-control:focus,
+input[type='text']:focus,
+input[type='password']:focus,
+input[type='email']:focus,
+input[type='number']:focus,
+[type='text'].form-control:focus,
+[type='password'].form-control:focus,
+[type='email'].form-control:focus,
+[type='tel'].form-control:focus,
 [contenteditable].form-control:focus {
+  box-shadow: none;
+}
+.btn:focus {
   box-shadow: none;
 }
