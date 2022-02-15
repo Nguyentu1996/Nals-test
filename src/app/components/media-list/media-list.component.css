@@ -34,6 +34,9 @@ img {
   color: #0969da;
   cursor: pointer;
 }
+.media {
+  padding: 5px;
+}
 
 @media only screen and (max-width: 768px) {
   .post-area {

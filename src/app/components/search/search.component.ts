@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-search',
@@ -9,12 +9,10 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class SearchComponent {
   @Output() search = new EventEmitter<string>();
 
-  searchForm = new FormGroup({
-    searchValue: new FormControl('')
-  });
+  searchValue = new FormControl('');
   constructor() {}
 
-  onSubmit() {
-    this.search.emit(this.searchForm.controls['searchValue'].value);
+  onSearch() {
+    this.search.emit(this.searchValue.value);
   }
 }

@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { switchMap, take } from 'rxjs';
+import { AddUpdateArticleModalComponent } from 'src/app/components/add-update-article-modal/add-update-article-modal.component';
 import { ToastService } from 'src/app/components/toast/toast.service';
 import { Article, ArticleResponse } from 'src/app/interface/article';
+import { AddArticleReq } from 'src/app/request/add-article';
+import { UpdateArticleReq } from 'src/app/request/update-article';
 import { ModalService } from 'src/app/services/model.service';
 import { BlogService } from '../../services/blog.service';
 
@@ -11,13 +15,16 @@ import { BlogService } from '../../services/blog.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  // @ViewChild(AddUpdateArticleModalComponent)
+  // elementRef!: AddUpdateArticleModalComponent;
   public articles!: ArticleResponse;
+  public article!: Article;
   pageNum = 1;
 
   constructor(
     private blogService: BlogService,
-    private modalService: ModalService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private ngbModal: NgbModal
   ) {}
 
   ngOnInit(): void {
@@ -38,7 +45,14 @@ export class HomeComponent implements OnInit {
   }
 
   onSearch(keyword: string) {
-    this.blogService.searchArticles(keyword, this.pageNum);
+    this.pageNum = 1;
+    this.blogService
+      .searchArticles(keyword, this.pageNum)
+      .subscribe((response) => {
+        if (response) {
+          this.articles = response;
+        }
+      });
   }
 
   onSort(sortType: string) {
@@ -47,9 +61,18 @@ export class HomeComponent implements OnInit {
 
   openArticleModal(id: string) {
     if (id) {
-      this.blogService.getArticleById(id).subscribe((response) => {
-        this.modalService.openAddOrUpdateArticleModal(response);
-      });
+      this.blogService
+        .getArticleById(id)
+        .pipe(take(1))
+        .subscribe((response) => {
+          const modalRef = this.ngbModal.open(AddUpdateArticleModalComponent);
+          modalRef.componentInstance.article = response;
+          modalRef.componentInstance.lbTitle = 'Update Artitle';
+          modalRef.componentInstance.btnTitle = 'Update';
+          modalRef.result.then((res: UpdateArticleReq) => {
+            this.updateArticle(res);
+          });
+        });
     } else {
       const article: Article = {
         id: 0,
@@ -59,29 +82,40 @@ export class HomeComponent implements OnInit {
         },
         title: ''
       };
-      this.modalService.openAddOrUpdateArticleModal(article);
+      const modalRef = this.ngbModal.open(AddUpdateArticleModalComponent);
+      modalRef.componentInstance.article = article;
+      modalRef.result.then((res: AddArticleReq) => {
+        this.addArticle(res);
+      });
     }
   }
-  addArticle(article: Article) {
-    this.blogService.addArticle(article).subscribe((response) => {
-      if (response) {
-        this.toastService.show('success', {
-          classname: 'bg-success text-light',
-          delay: 10000
-        });
-        this.getArticles();
-      }
-    });
+
+  addArticle(article: AddArticleReq) {
+    this.blogService
+      .addArticle(article)
+      .pipe(switchMap((_) => this.blogService.getArticles(this.pageNum)))
+      .subscribe((response) => {
+        if (response) {
+          this.articles = response;
+          this.toastService.show('Added success', {
+            classname: 'bg-success text-light',
+            delay: 10000
+          });
+        }
+      });
   }
-  updateArticle(article: Article) {
-    this.blogService.updateArticle(article).subscribe((response) => {
-      if (response) {
-        this.toastService.show('success', {
-          classname: 'bg-success text-light',
-          delay: 10000
-        });
-        this.getArticles();
-      }
-    });
+  updateArticle(article: UpdateArticleReq) {
+    this.blogService
+      .updateArticle(article)
+      .pipe(switchMap((_) => this.blogService.getArticles(this.pageNum)))
+      .subscribe((response) => {
+        if (response) {
+          this.articles = response;
+          this.toastService.show('Updated success', {
+            classname: 'bg-success text-light',
+            delay: 10000
+          });
+        }
+      });
   }
 }

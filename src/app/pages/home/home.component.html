@@ -14,7 +14,7 @@
       </div>
     </div>
   </div>
-  <ng-container *ngIf="articles">
+  <ng-container *ngIf="articles?.data?.length">
     <div class="row pt-lg-5 pt-md-3 justify-content-center">
       <ngb-pagination
         [collectionSize]="articles.pagy.count"
@@ -27,8 +27,3 @@
     </div>
   </ng-container>
 </div>
-<app-add-update-article-modal
-  (addArticle)="addArticle($event)"
-  (updateArticle)="updateArticle($event)"
->
-</app-add-update-article-modal>

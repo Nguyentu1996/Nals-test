@@ -1,23 +1,30 @@
-<ng-container *ngIf="articles; else noResultTmpl">
+<ng-container *ngIf="articles?.data?.length; else noResultTmpl">
   <ul>
     <div class="d-flex flex-wrap px-0">
       <ng-container *ngFor="let item of articles.data">
         <li class="media col-md-6 col-lg-4">
           <div class="post-area">
             <a [routerLink]="['/article', item.id]">
-              <img [src]="item.image.url | image | async" [alt]="item.title" />
+              <img
+                #img
+                [src]="item.image.url"
+                appImgFallback
+                [alt]="item.title"
+              />
             </a>
             <div class="media-body">
               <a class="title mt-0 mb-1" [routerLink]="['/article', item.id]">{{
                 item.title
               }}</a>
             </div>
-            <a class="mt-0 mb-1" id="edit-tag" (click)="onEdit(item.id)"
-              >Edit</a
-            >
-            <span class="create-date">{{
-              item.created_at | date: 'MMM d, y, h:mm:ss a'
-            }}</span>
+            <div class="">
+              <a class="mt-0 mb-1" id="edit-tag" (click)="onEdit(item.id)"
+                >Edit</a
+              >
+              <span class="create-date">{{
+                item.created_at | date: 'MMM d, y, h:mm:ss a'
+              }}</span>
+            </div>
           </div>
         </li>
       </ng-container>

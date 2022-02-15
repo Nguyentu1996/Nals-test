@@ -1,14 +1,21 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCollapseModule, NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
+import { ToastComponent } from 'src/app/components/toast/toast.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { MainComponent } from './main.component';
 
 @NgModule({
-  imports: [RouterModule, NgbCollapseModule],
+  imports: [CommonModule, RouterModule, NgbCollapseModule, NgbToastModule],
   exports: [],
-  declarations: [MainComponent, FooterComponent, HeaderComponent],
+  declarations: [
+    MainComponent,
+    FooterComponent,
+    HeaderComponent,
+    ToastComponent
+  ],
   providers: []
 })
 export class MainModule {}

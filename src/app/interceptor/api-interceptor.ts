@@ -21,11 +21,11 @@ export class ApiInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    let request = req.clone({
-      headers: req.headers.set('Content-Type', 'application/json ')
-    });
+    // let request = req.clone({
+    //   headers: req.headers.set('Content-Type', 'application/json ')
+    // });
     this.spinnerOverlayService.show();
-    return next.handle(request).pipe(
+    return next.handle(req).pipe(
       catchError((error: HttpErrorResponse) => {
         this.modalService.openErrorModal();
         return throwError(

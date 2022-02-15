@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, switchMap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Article } from 'src/app/interface/article';
 import { BlogService } from 'src/app/services/blog.service';
 
