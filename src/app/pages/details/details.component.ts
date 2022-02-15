@@ -14,14 +14,12 @@ export class DetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private blogService: BlogService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     let id = this.route.snapshot.paramMap.get('id');
-    if(id) {
+    if (id) {
       this.article$ = this.blogService.getArticleById(id);
     }
-    
   }
-
 }

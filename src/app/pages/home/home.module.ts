@@ -12,33 +12,32 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { CkeditorComponent } from 'src/app/components/ckeditor/ckeditor.component';
 import { ImagePipe } from 'src/app/pipes/image-pipe';
 
-
 const router = [
-    {
-        path: '', component: HomeComponent
-        
-    },
-]
+  {
+    path: '',
+    component: HomeComponent
+  }
+];
 @NgModule({
-    imports: [
-        CommonModule,
-        RouterModule.forChild(router),
-        NgbPaginationModule,
-        FormsModule,
-        ReactiveFormsModule,
-    
-        CKEditorModule
-    ],
-    exports: [],
-    declarations: [
-        HomeComponent, 
-        SearchComponent,
-        MediaListComponent,
-        TagsComponent,
-        AddUpdateArticleModalComponent,
-        CkeditorComponent,
-        ImagePipe
-    ],
-    providers: [],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(router),
+    NgbPaginationModule,
+    FormsModule,
+    ReactiveFormsModule,
+
+    CKEditorModule
+  ],
+  exports: [],
+  declarations: [
+    HomeComponent,
+    SearchComponent,
+    MediaListComponent,
+    TagsComponent,
+    AddUpdateArticleModalComponent,
+    CkeditorComponent,
+    ImagePipe
+  ],
+  providers: []
 })
-export class HomeModule { }
+export class HomeModule {}

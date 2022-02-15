@@ -10,27 +10,25 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'article', component: MainComponent,
+    path: 'article',
+    component: MainComponent,
     children: [
       {
-        path: '', loadChildren: () =>
-          import('./pages/home/home.module').then(
-            m => m.HomeModule
-          )
+        path: '',
+        loadChildren: () =>
+          import('./pages/home/home.module').then((m) => m.HomeModule)
       },
       {
-        path: ':id', loadChildren: () =>
-          import('./pages/details/details.module').then(
-            m => m.DetailsModule
-          )
-      },
+        path: ':id',
+        loadChildren: () =>
+          import('./pages/details/details.module').then((m) => m.DetailsModule)
+      }
     ]
   },
   {
-    path: '', component: MainComponent,
-    children: [
-      { path: '**', component: NotFoundComponent }
-    ]
+    path: '',
+    component: MainComponent,
+    children: [{ path: '**', component: NotFoundComponent }]
   }
 ];
 
@@ -38,4 +36,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

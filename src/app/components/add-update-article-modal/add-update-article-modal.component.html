@@ -35,9 +35,9 @@
           </div>
         </div>
         <div class="col-12">
-          <label for="image">Image</label>
+          <label for="image">Image Url</label>
           <input
-            type="file"
+            type="text"
             class="form-control"
             formControlName="image"
             id="image"
@@ -46,8 +46,8 @@
             class="text-danger"
             *ngIf="image?.invalid && (image?.dirty || image?.touched)"
           >
-            <div *ngIf="image?.errors?.['imageNotExist']">
-              Image doesn't exist
+            <div *ngIf="image?.errors?.['pattern']">
+              Please enter valid url.
             </div>
           </div>
         </div>

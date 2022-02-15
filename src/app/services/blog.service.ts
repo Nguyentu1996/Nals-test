@@ -39,14 +39,4 @@ export class BlogService {
       environment.apiUrl + `blogs?orderBy=createdA&page=${page}&items=10`
     );
   }
-
-  validateImage(url: string): Observable<boolean> {
-    let isValid = this.http.get(url).pipe(
-      map((value) => {
-        if (value) {
-        }
-      })
-    );
-    return of(false);
-  }
 }

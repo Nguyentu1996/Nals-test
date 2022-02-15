@@ -10,13 +10,11 @@ export class SearchComponent {
   @Output() search = new EventEmitter<string>();
 
   searchForm = new FormGroup({
-    searchValue: new FormControl(''),
-    
+    searchValue: new FormControl('')
   });
-  constructor() { }
+  constructor() {}
 
   onSubmit() {
-    this.search.emit(this.searchForm.controls['searchValue'].value)
+    this.search.emit(this.searchForm.controls['searchValue'].value);
   }
-
 }

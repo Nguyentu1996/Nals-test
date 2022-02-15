@@ -7,8 +7,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class TagsComponent {
   @Output() openArticleModal = new EventEmitter();
-  constructor(
-  ) { }
+  constructor() {}
 
   addArticle() {
     this.openArticleModal.emit();

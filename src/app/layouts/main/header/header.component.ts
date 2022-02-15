@@ -8,6 +8,5 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent {
   public isCollapsed = true;
 
-  constructor() { }
-
+  constructor() {}
 }

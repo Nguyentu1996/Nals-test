@@ -9,7 +9,7 @@ export class ModalService {
   private _openAddArticleModal$ = new Subject<Article>();
   public openAddArticleModal$ = this._openAddArticleModal$.asObservable();
 
-  constructor() { }
+  constructor() {}
 
   openErrorModal(reason?: string) {
     this._openErrorModal$.next(reason);

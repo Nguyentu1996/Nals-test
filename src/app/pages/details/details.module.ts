@@ -4,17 +4,15 @@ import { RouterModule } from '@angular/router';
 import { DetailsComponent } from './details.component';
 
 const router = [
-    {
-        path: '', component: DetailsComponent
-    }
-]
+  {
+    path: '',
+    component: DetailsComponent
+  }
+];
 @NgModule({
-    imports: [
-        CommonModule,
-        RouterModule.forChild(router)
-    ],
-    exports: [],
-    declarations: [DetailsComponent],
-    providers: [],
+  imports: [CommonModule, RouterModule.forChild(router)],
+  exports: [],
+  declarations: [DetailsComponent],
+  providers: []
 })
-export class DetailsModule { }
+export class DetailsModule {}

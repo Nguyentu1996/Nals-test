@@ -1,49 +1,47 @@
 .post-area {
-    display: block;
-    width: 100%;
-    min-height: 150px;
-    background-color: white;
-    margin-top: 20px;
+  display: block;
+  width: 100%;
+  min-height: 150px;
+  background-color: white;
+  margin-top: 20px;
 }
 img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
 }
 .create-date {
-    float: right;
-    font-size: 11px;
-    margin-top: 5px;
-    margin-right: 5px;
-    color: #999999;
-    letter-spacing: 0.05em;
+  float: right;
+  font-size: 11px;
+  margin-top: 5px;
+  margin-right: 5px;
+  color: #999999;
+  letter-spacing: 0.05em;
 }
 .title {
-    font-size: 20px;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  font-size: 20px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .no-result {
-    margin-top: 20px;
-    align-items: center;
-
+  margin-top: 20px;
+  align-items: center;
 }
 #edit-tag {
-    color: #0969da;
-    cursor: pointer;
+  color: #0969da;
+  cursor: pointer;
 }
 
-
 @media only screen and (max-width: 768px) {
-    .post-area {
-        margin: 20px 0;  
-    }
-    img {
-        width: 100%;
-        height: 220px;
-        object-fit: cover;
-    }
+  .post-area {
+    margin: 20px 0;
+  }
+  img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+  }
 }

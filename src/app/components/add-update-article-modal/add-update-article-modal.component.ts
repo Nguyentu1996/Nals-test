@@ -7,17 +7,10 @@ import {
   Output,
   ViewChild
 } from '@angular/core';
-import {
-  AbstractControl,
-  FormControl,
-  FormGroup,
-  ValidationErrors,
-  Validators
-} from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { map, Observable } from 'rxjs';
 import { Article } from 'src/app/interface/article';
-import { BlogService } from 'src/app/services/blog.service';
 import { ModalService } from 'src/app/services/model.service';
 
 @Component({
@@ -32,6 +25,8 @@ export class AddUpdateArticleModalComponent implements OnInit {
   elementRef!: ElementRef;
   btnTitle: string = 'Add';
   lbTitle: string = 'Add Article';
+  regexImg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
+
   formGroup = new FormGroup({
     title: new FormControl('', [
       Validators.required,
@@ -41,7 +36,7 @@ export class AddUpdateArticleModalComponent implements OnInit {
     id: new FormControl(''),
     createAt: new FormControl(''),
     content: new FormControl(''),
-    image: new FormControl('')
+    image: new FormControl('', Validators.pattern(this.regexImg))
   });
 
   get title() {
@@ -60,9 +55,20 @@ export class AddUpdateArticleModalComponent implements OnInit {
     return this.formGroup.get('createAt');
   }
 
-  constructor(private modalService: ModalService, private ngbModal: NgbModal) {}
+  constructor(
+    private modalService: ModalService,
+    private ngbModal: NgbModal,
+    private http: HttpClient,
+    protected sanitizer: DomSanitizer
+  ) {}
 
   ngOnInit(): void {
+    this.listenerOpenModal();
+    this.image?.valueChanges.subscribe((value) => {
+      console.log(value);
+    });
+  }
+  listenerOpenModal() {
     this.modalService.openAddArticleModal$.subscribe((article) => {
       if (article.id) {
         this.btnTitle = 'Update';

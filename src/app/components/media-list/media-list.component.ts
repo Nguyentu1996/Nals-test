@@ -9,7 +9,7 @@ import { Article, ArticleResponse } from 'src/app/interface/article';
 })
 export class MediaListComponent {
   @Input()
-  articles$!: Observable<ArticleResponse>;
+  articles!: ArticleResponse;
   @Output() openArticleModal = new EventEmitter();
   constructor() {}
   onEdit(id: number) {

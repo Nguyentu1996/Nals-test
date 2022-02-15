@@ -11,7 +11,7 @@ import { BlogService } from '../../services/blog.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  public articles$!: Observable<ArticleResponse>;
+  public articles!: ArticleResponse;
   pageNum = 1;
 
   constructor(
@@ -25,7 +25,11 @@ export class HomeComponent implements OnInit {
   }
 
   getArticles() {
-    this.articles$ = this.blogService.getArticles(this.pageNum);
+    this.blogService.getArticles(this.pageNum).subscribe((response) => {
+      if (response) {
+        this.articles = response;
+      }
+    });
   }
 
   onPageChange(currentPage: number) {

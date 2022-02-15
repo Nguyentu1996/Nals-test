@@ -2,7 +2,7 @@
   <div class="row pt-md-3 content-area">
     <div class="col-lg-9 col-md-8 px-0">
       <app-media-list
-        [articles$]="articles$"
+        [articles]="articles"
         (openArticleModal)="openArticleModal($event)"
       >
       </app-media-list>
@@ -14,19 +14,17 @@
       </div>
     </div>
   </div>
-  <ng-container *ngIf="articles$ | async as articles">
-    <ng-container *ngIf="articles">
-      <div class="row pt-lg-5 pt-md-3 justify-content-center">
-        <ngb-pagination
-          [collectionSize]="articles.pagy.count"
-          (pageChange)="onPageChange($event)"
-          [maxSize]="7"
-          [(page)]="pageNum"
-          aria-label="Default pagination"
-        >
-        </ngb-pagination>
-      </div>
-    </ng-container>
+  <ng-container *ngIf="articles">
+    <div class="row pt-lg-5 pt-md-3 justify-content-center">
+      <ngb-pagination
+        [collectionSize]="articles.pagy.count"
+        (pageChange)="onPageChange($event)"
+        [maxSize]="7"
+        [(page)]="pageNum"
+        aria-label="Default pagination"
+      >
+      </ngb-pagination>
+    </div>
   </ng-container>
 </div>
 <app-add-update-article-modal

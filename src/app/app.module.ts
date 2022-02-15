@@ -15,14 +15,12 @@ import { ApiInterceptor } from './interceptor/api-interceptor';
 import { MainModule } from './layouts/main/main.module';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
     NotFoundComponent,
     DialogErrorComponent,
-    ToastComponent,
-    
+    ToastComponent
   ],
   imports: [
     BrowserModule,
@@ -35,12 +33,11 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     CKEditorModule,
     FormsModule,
     ReactiveFormsModule
-
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true }
   ],
   entryComponents: [SpinnerComponent],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

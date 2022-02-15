@@ -7,15 +7,11 @@ import { ToastService } from './toast.service';
   styleUrls: ['./toast.component.css']
 })
 export class ToastComponent implements OnInit {
+  constructor(public toastService: ToastService) {}
 
-  constructor(
-    public toastService: ToastService
-  ) { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-  }
-
-  isTemplate(toast: any) { 
+  isTemplate(toast: any) {
     return toast.textOrTpl instanceof TemplateRef;
   }
 }

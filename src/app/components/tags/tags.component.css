@@ -1,18 +1,16 @@
 #tag-item {
-    width: 80px;
-    height: 23px;
-    font-size: 14px;
-    background-color: #d3d3d3;
-    cursor: pointer;
+  width: 80px;
+  height: 23px;
+  font-size: 14px;
+  background-color: #d3d3d3;
+  cursor: pointer;
 }
 #tags-group {
-    margin-top: 3px ;
-    /* height: 2px; */
+  margin-top: 3px;
 }
 
-
 .form-select {
-    font-size: 13px;
-    height: 23px;
-    width: 100%;
+  font-size: 13px;
+  height: 23px;
+  width: 100%;
 }
