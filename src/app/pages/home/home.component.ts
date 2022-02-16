@@ -14,8 +14,6 @@ import { BlogService } from '../../services/blog.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  // @ViewChild(AddUpdateArticleModalComponent)
-  // elementRef!: AddUpdateArticleModalComponent;
   public articles!: ArticleResponse;
   public article!: Article;
   pageNum = 1;

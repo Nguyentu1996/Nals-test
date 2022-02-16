@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Article, ArticleResponse } from 'src/app/interface/article';
+import { Component, Input, Output } from '@angular/core';
+import { debounceTime, Subject } from 'rxjs';
+import { ArticleResponse } from 'src/app/interface/article';
 
 @Component({
   selector: 'app-media-list',
@@ -8,11 +8,17 @@ import { Article, ArticleResponse } from 'src/app/interface/article';
   styleUrls: ['./media-list.component.css']
 })
 export class MediaListComponent {
+  private openArticleSubject = new Subject<string>();
+  private clickDebounce = 300;
+
   @Input()
   articles!: ArticleResponse;
-  @Output() openArticleModal = new EventEmitter();
+  @Output() openArticleModal = this.openArticleSubject.pipe(
+    debounceTime(this.clickDebounce)
+  );
+
   constructor() {}
-  onEdit(id: number) {
-    this.openArticleModal.emit(id);
+  onEdit(id) {
+    this.openArticleSubject.next(id);
   }
 }
